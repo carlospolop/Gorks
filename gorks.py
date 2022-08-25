@@ -142,10 +142,10 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
         # If here, something was found
         progressbar.streams.flush()
         print("")
-        print(f"[i] {url}")
-        print(f"[+] Dork: {dork}")
-        print(f"[?] Description: {description}")
-        print(f"[l] Links:")
+        print(f"{Fore.YELLOW}[u] {Fore.BLUE}{url}")
+        print(f"{Fore.YELLOW}[+] {Fore.BLUE}Dork: {Style.RESET_ALL}{dork}")
+        print(f"{Fore.YELLOW}[?] {Fore.BLUE}Description: {Style.RESET_ALL}{description}")
+        print(f"{Fore.YELLOW}[i] {Fore.BLUE}Links:{Style.RESET_ALL}")
         for res in results:
             print(res["link"])
 
