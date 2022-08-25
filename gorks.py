@@ -48,7 +48,7 @@ RATE_LIMIT_SLEEP = 60/200
 
 def google_search(search_term: str, gcse_id: str, api_key: str, debug:bool, siterestrict:bool, **kwargs) -> Tuple[Optional[Dict[str, Any]], str]:
         """
-        Perform a search inside a google custom search angine ID
+        Perform a search inside a google custom search engine ID
         """
 
         sleep(RATE_LIMIT_SLEEP)
@@ -96,7 +96,7 @@ def google_search(search_term: str, gcse_id: str, api_key: str, debug:bool, site
 
 def req_query(query: str, gcse_id: str, api_key: str, debug: bool, siterestrict:bool, start: int = 1, max_results: int = 20) -> Tuple[Optional[List[Any]], str]:
         """
-        Search a query inside a google custom search angine ID
+        Search a query inside a google custom search engine ID and if more results get them
         """
 
         response, url = google_search(query, gcse_id, api_key, debug, siterestrict, num=10, start=start)
@@ -177,7 +177,7 @@ def main():
     with open(dorks_path) as json_file:
         dorks_json = json.load(json_file)
     
-    # Search each fork
+    # Search each dork
     for dork_list_name, dork_list in dorks_json.items():
         check_dorks(dork_list_name, dork_list, csid, api_key, debug, siterestrict)
 
