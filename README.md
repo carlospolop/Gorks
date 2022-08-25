@@ -5,6 +5,7 @@
 ## Quick Start
 
 ```bash
+pip3 install -r requirements
 # Use --siterestrict if you have configured less than 10 domains in the cseid
 python3 gorks.py --cseid <cseid> --dorks ./ghdb.json --api-key <api_key> [--siterestrict] 2>/dev/null
 ```
