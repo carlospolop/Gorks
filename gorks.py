@@ -41,90 +41,89 @@ USELESS_DORKS = (
     'intext: intext: intext: intext: intext:',
 )
 
-EXTRA_DORKS = {
-    "Gorks Tool Extra Dorks": [
-        {
-            "dork": 'inurl:"/.git"',
-            "description": "Search for .git folders"
-        },
-        {
-            "dork": 'ext:bkf | ext:bkp | ext:bak | ext:old | ext:backup',
-            "description": "Search for backups"
-        },
-        {
-            "dork": 'ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv',
-            "description": "Search for backups"
-        },
-        {
-            "dork": 'not for distribution | confidential | "employee only" | proprietary | top secret | classified | trade secret | internal | private filetype:xls OR filetype:csv OR filetype:doc OR filetype:pdf',
-            "description": "Confidential files"
-        },
-        {
-            "dork": 'ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv',
-            "description": "Search for backups"
-        },
-        {
-            "dork": 'ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:env | ext:ini',
-            "description": "Search for config files"
-        },
-        {
-            "dork": 'ext:sql | ext:dbf | ext:mdb',
-            "description": "Search for db files"
-        },
-        {
-            "dork": 'intitle:index.of | ext:log | ext:php intitle:phpinfo "published by the PHP Group" | inurl:shell | inurl:backdoor | inurl:wso | inurl:cmd | shadow | passwd | boot.ini | inurl:backdoor | inurl:readme | inurl:license | inurl:install | inurl:setup | inurl:config | inurl:"/phpinfo.php" | inurl:".htaccess" | ext:swf',
-            "description": "Other interesting files"
-        },
-        {
-            "dork": 'intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
-            "description": "Search for sql errors"
-        },
-        {
-            "dork": 'intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
-            "description": "Search for sql errors"
-        },
-        {
-            "dork": '"PHP Parse error" | "PHP Warning" | "PHP Error"',
-            "description": "Search for php errors"
-        },
-        {
-            "dork": '"PHP Parse error" | "PHP Warning" | "PHP Error"',
-            "description": "Search for php errors"
-        },
-        {
-            "dork": 'inurl:wp-content | inurl:wp-includes',
-            "description": "Search for wordpress files"
-        },
-        {
-            "dork": 'inurl:signup | inurl:register | intitle:Signup',
-            "description": "Login pages"
-        },
-        {
-            "dork": 'intitle:traefik inurl:8080/dashboard',
-            "description": "Traefik"
-        },
-        {
-            "dork": 'intitle:traefik inurl:8080/dashboard',
-            "description": "Traefik"
-        },
-        {
-            "dork": 'intitle:traefik inurl:8080/dashboard',
-            "description": "Traefik"
-        },
-        {
-            "dork": 'intitle:"Dashboard [Jenkins]"',
-            "description": "Jenkins"
-        },
-        {
-            "dork": 'inurl:redir | inurl:url | inurl:redirect | inurl:return | inurl:src=http | inurl:r=http',
-            "description": "Open Redirects"
-        },
-        {
-            "dork": 'ext:action | ext:struts | ext:do',
-            "description": "Apache Struts RCE"
-        },
-    ]
-}
+EXTRA_DORKS = [
+    {
+        "dork": 'inurl:"/.git"',
+        "description": "Search for .git folders"
+    },
+    {
+        "dork": 'ext:bkf | ext:bkp | ext:bak | ext:old | ext:backup',
+        "description": "Search for backups"
+    },
+    {
+        "dork": 'ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv',
+        "description": "Search for backups"
+    },
+    {
+        "dork": 'not for distribution | confidential | "employee only" | proprietary | top secret | classified | trade secret | internal | private filetype:xls OR filetype:csv OR filetype:doc OR filetype:pdf',
+        "description": "Confidential files"
+    },
+    {
+        "dork": 'ext:doc | ext:docx | ext:odt | ext:pdf | ext:rtf | ext:sxw | ext:psw | ext:ppt | ext:pptx | ext:pps | ext:csv',
+        "description": "Search for backups"
+    },
+    {
+        "dork": 'ext:xml | ext:conf | ext:cnf | ext:reg | ext:inf | ext:rdp | ext:cfg | ext:txt | ext:ora | ext:env | ext:ini',
+        "description": "Search for config files"
+    },
+    {
+        "dork": 'ext:sql | ext:dbf | ext:mdb',
+        "description": "Search for db files"
+    },
+    {
+        "dork": 'intitle:index.of | ext:log | ext:php intitle:phpinfo "published by the PHP Group" | inurl:shell | inurl:backdoor | inurl:wso | inurl:cmd | shadow | passwd | boot.ini | inurl:backdoor | inurl:readme | inurl:license | inurl:install | inurl:setup | inurl:config | inurl:"/phpinfo.php" | inurl:".htaccess" | ext:swf',
+        "description": "Other interesting files"
+    },
+    {
+        "dork": 'intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
+        "description": "Search for sql errors"
+    },
+    {
+        "dork": 'intext:"sql syntax near" | intext:"syntax error has occurred" | intext:"incorrect syntax near" | intext:"unexpected end of SQL command" | intext:"Warning: mysql_connect()" | intext:"Warning: mysql_query()" | intext:"Warning: pg_connect()"',
+        "description": "Search for sql errors"
+    },
+    {
+        "dork": '"PHP Parse error" | "PHP Warning" | "PHP Error"',
+        "description": "Search for php errors"
+    },
+    {
+        "dork": '"PHP Parse error" | "PHP Warning" | "PHP Error"',
+        "description": "Search for php errors"
+    },
+    {
+        "dork": 'inurl:wp-content | inurl:wp-includes',
+        "description": "Search for wordpress files"
+    },
+    {
+        "dork": 'inurl:signup | inurl:register | intitle:Signup',
+        "description": "Login pages"
+    },
+    {
+        "dork": 'intitle:traefik inurl:8080/dashboard',
+        "description": "Traefik"
+    },
+    {
+        "dork": 'intitle:traefik inurl:8080/dashboard',
+        "description": "Traefik"
+    },
+    {
+        "dork": 'intitle:traefik inurl:8080/dashboard',
+        "description": "Traefik"
+    },
+    {
+        "dork": 'intitle:"Dashboard [Jenkins]"',
+        "description": "Jenkins"
+    },
+    {
+        "dork": 'inurl:redir | inurl:url | inurl:redirect | inurl:return | inurl:src=http | inurl:r=http',
+        "description": "Open Redirects"
+    },
+    {
+        "dork": 'ext:action | ext:struts | ext:do',
+        "description": "Apache Struts RCE"
+    },
+]
+
 
 # 100 requests per minute and api key, but each request takes some time so lets give some extra 100
 RATE_LIMIT_SLEEP = 60/200
@@ -260,6 +259,10 @@ def main():
     # load json from dorks_path
     with open(dorks_path) as json_file:
         dorks_json = json.load(json_file)
+    
+    
+    # Add EXTRA_DORKS to dorks_json
+    dorks_json["Extra Gorks Json"] = EXTRA_DORKS
     
     # Search each dork
     for dork_list_name, dork_list in dorks_json.items():
