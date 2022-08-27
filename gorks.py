@@ -262,7 +262,7 @@ def main():
     
     
     # Add EXTRA_DORKS to dorks_json
-    dorks_json["Extra Gorks Json"] = EXTRA_DORKS
+    dorks_json["EXTRA DORKS"] = EXTRA_DORKS
     
     # Search each dork
     for dork_list_name, dork_list in dorks_json.items():
