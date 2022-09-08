@@ -286,7 +286,7 @@ def main():
     
     
     # Add EXTRA_DORKS to dorks_json
-    dorks_json["Extra Gorks Json"] = EXTRA_DORKS
+    dorks_json["EXTRA DORKS"] = EXTRA_DORKS
     
     api_keys = []
     if apikey_file:
