@@ -2,6 +2,7 @@ import argparse
 import json
 import re
 import requests
+import random
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import progressbar
@@ -194,9 +195,11 @@ def req_query(query: str, gcse_id: str, api_key: str, debug: bool, siterestrict:
         return results, url
 
 
-def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_key: str, debug:bool, siterestrict:bool) -> None:
+def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_key: str, debug:bool, siterestrict:bool, json_path="") -> None:
     print(f"Category: {Fore.GREEN}{gdork_list_name.upper()}{Style.RESET_ALL}!")
     print("")
+
+    json_results = []
 
     for i in progressbar.progressbar(range(len(gdork_list))):
         item = gdork_list[i]
@@ -223,33 +226,54 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
             continue
         
         # If here, something was found
-        progressbar.streams.flush()
-        print("")
-        print(f"{Fore.YELLOW}[u] {Fore.BLUE}{url}")
-        print(f"{Fore.YELLOW}[+] {Fore.BLUE}Dork: {Style.RESET_ALL}{dork}")
-        print(f"{Fore.YELLOW}[?] {Fore.BLUE}Description: {Style.RESET_ALL}{description}")
-        print(f"{Fore.YELLOW}[i] {Fore.BLUE}Links:{Style.RESET_ALL}")
-        for res in results:
-            print(res["link"])
+        if json_path:
+            json_results.append({
+                "name": dork,
+                "category": gdork_list_name,
+                "description": description,
+                "results": results
+            })
+        
+        else:
+            progressbar.streams.flush()
+            print("")
+            print(f"{Fore.YELLOW}[u] {Fore.BLUE}{url}")
+            print(f"{Fore.YELLOW}[+] {Fore.BLUE}Dork: {Style.RESET_ALL}{dork}")
+            print(f"{Fore.YELLOW}[?] {Fore.BLUE}Description: {Style.RESET_ALL}{description}")
+            print(f"{Fore.YELLOW}[i] {Fore.BLUE}Links:{Style.RESET_ALL}")
+            for res in results:
+                print(res["link"])
 
-        print("")
+            print("")
     print("==================================")
     print("")
+
+    if json_path:
+        with open(json_path, "w") as f:
+            json.dump(json_results, f)
 
 def main():
     parser = argparse.ArgumentParser(description='Search google dorks in the specified GCSE id')
     parser.add_argument('--cseid', help='Id of the custom search engine', required=True)
-    parser.add_argument('--api-key', help='API key', required=True)
+    parser.add_argument('--api-key', help='API key')
+    parser.add_argument('--api-keys-file', help='Read api keys from file')
     parser.add_argument('--dorks', help='Path to JSON dorks', required=True)
     parser.add_argument('--debug', help='Debug', default=False, action='store_true')
     parser.add_argument('--siterestrict', help='Use siterestrict api (the engine has less than 10 domains)', default=False, action='store_true')
+    parser.add_argument('--json-path', help='Store results in a JSON file')
 
     args = parser.parse_args()
-    csid = args.cseid
+    cseid = args.cseid
+    apikey_file = args.api_keys_file
     api_key = args.api_key
     dorks_path = args.dorks
     debug = args.debug
     siterestrict = args.siterestrict
+    json_path = args.json_path
+
+    if not apikey_file and not api_key:
+        print("You need to specify a --api.key or --api-keys-file")
+        exit(1)
 
     # Check if path file exists
     if not exists(dorks_path):
@@ -264,9 +288,22 @@ def main():
     # Add EXTRA_DORKS to dorks_json
     dorks_json["Extra Gorks Json"] = EXTRA_DORKS
     
+    api_keys = []
+    if apikey_file:
+        with open(apikey_file) as f:
+            api_keys = f.read().splitlines()
+    
+    # If nothing just return as correct execution indicating that no apis were found
+    if apikey_file and not api_keys:
+        print("No api keys in file")
+        exit(0)
+    
     # Search each dork
     for dork_list_name, dork_list in dorks_json.items():
-        check_dorks(dork_list_name, dork_list, csid, api_key, debug, siterestrict)
+        if api_keys:
+            api_key = random.choice(api_keys)
+        
+        check_dorks(dork_list_name, dork_list, cseid, api_key, debug, siterestrict, json_path)
 
 
 if __name__ == "__main__":
