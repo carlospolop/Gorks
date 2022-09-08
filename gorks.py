@@ -232,7 +232,7 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
                 "name": dork,
                 "category": gdork_list_name,
                 "description": description,
-                "results": results
+                "results": [res["link"] for res in results]
             })
         
         else:
