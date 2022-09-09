@@ -12,6 +12,8 @@ python3 gorks.py --cseid <cseid> --dorks ./ghdb.json [--api-key <api_key>|--api-
 
 Create a **Google Custom Search Engine** in https://programmablesearchengine.google.com/, configure the **domain(s)** where you want to search the Dorks in that engine, and **get the ID** and use it in the `--cseid` param.
 
+**Please, note that 1 execution of Gorks over all the google hacking database in GCSE costs around 80$ !!**
+
 Create a **API key for the Custom Search** service in https://console.cloud.google.com/apis/api/customsearch.googleapis.com/metrics
 
 You can **download an updated `ghdb.json`** from https://github.com/carlospolop/Auto_Wordlists/blob/main/wordlists/ghdb.json
