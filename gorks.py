@@ -195,10 +195,9 @@ def req_query(query: str, gcse_id: str, api_key: str, debug: bool, siterestrict:
         return results, url
 
 
-def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_key: str, debug:bool, siterestrict:bool, out_json:bool) -> None:
-    if not out_json:
-        print(f"Category: {Fore.GREEN}{gdork_list_name.upper()}{Style.RESET_ALL}!")
-        print("")
+def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_key: str, debug:bool, siterestrict:bool, out_json_file:str) -> None:
+    print(f"Category: {Fore.GREEN}{gdork_list_name.upper()}{Style.RESET_ALL}!")
+    print("")
 
     json_results = []
 
@@ -227,32 +226,30 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
             continue
         
         # If here, something was found
-        if out_json:
-            json_results.append({
-                "name": dork,
-                "category": gdork_list_name,
-                "description": description,
-                "results": [res["link"] for res in results]
-            })
+        json_results.append({
+            "name": dork,
+            "category": gdork_list_name,
+            "description": description,
+            "results": [res["link"] for res in results]
+        })
         
-        else:
-            progressbar.streams.flush()
-            print("")
-            print(f"{Fore.YELLOW}[u] {Fore.BLUE}{url}")
-            print(f"{Fore.YELLOW}[+] {Fore.BLUE}Dork: {Style.RESET_ALL}{dork}")
-            print(f"{Fore.YELLOW}[?] {Fore.BLUE}Description: {Style.RESET_ALL}{description}")
-            print(f"{Fore.YELLOW}[i] {Fore.BLUE}Links:{Style.RESET_ALL}")
-            for res in results:
-                print(res["link"])
-
-            print("")
-    
-    if not out_json:
-        print("==================================")
+        progressbar.streams.flush()
         print("")
+        print(f"{Fore.YELLOW}[u] {Fore.BLUE}{url}")
+        print(f"{Fore.YELLOW}[+] {Fore.BLUE}Dork: {Style.RESET_ALL}{dork}")
+        print(f"{Fore.YELLOW}[?] {Fore.BLUE}Description: {Style.RESET_ALL}{description}")
+        print(f"{Fore.YELLOW}[i] {Fore.BLUE}Links:{Style.RESET_ALL}")
+        for res in results:
+            print(res["link"])
 
-    if out_json:
-        json.dumps(json_results)
+        print("")
+    
+    print("==================================")
+    print("")
+
+    if out_json_file:
+        with open(out_json_file, "w") as f:
+            json.dump(json_results)
 
 def main():
     parser = argparse.ArgumentParser(description='Search google dorks in the specified GCSE id')
@@ -262,7 +259,7 @@ def main():
     parser.add_argument('--dorks', help='Path to JSON dorks', required=True)
     parser.add_argument('--debug', help='Debug', default=False, action='store_true')
     parser.add_argument('--siterestrict', help='Use siterestrict api (the engine has less than 10 domains)', default=False, action='store_true')
-    parser.add_argument('--json', help='Print only json results at then end', default=False, action='store_true')
+    parser.add_argument('--json-file', help='Store json results in the indicated file', default=False, action='store_true')
 
     args = parser.parse_args()
     cseid = args.cseid
@@ -271,7 +268,7 @@ def main():
     dorks_path = args.dorks
     debug = args.debug
     siterestrict = args.siterestrict
-    out_json = args.json
+    out_json_file_file = args.json_file
 
     if not apikey_file and not api_key:
         print("You need to specify a --api.key or --api-keys-file")
@@ -305,7 +302,7 @@ def main():
         if api_keys:
             api_key = random.choice(api_keys)
         
-        check_dorks(dork_list_name, dork_list, cseid, api_key, debug, siterestrict, out_json)
+        check_dorks(dork_list_name, dork_list, cseid, api_key, debug, siterestrict, out_json_file)
 
 
 if __name__ == "__main__":

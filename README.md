@@ -7,7 +7,7 @@
 ```bash
 pip3 install -r requirements
 # Use --siterestrict if you have configured less than 10 domains in the cseid
-python3 gorks.py --cseid <cseid> --dorks ./ghdb.json [--api-key <api_key>|--api-keys-file </path/apikeys>] [--siterestrict] [--json] 2>/dev/null
+python3 gorks.py --cseid <cseid> --dorks ./ghdb.json [--api-key <api_key>|--api-keys-file </path/apikeys>] [--siterestrict] [--json-file </oath/to/json_file>] 2>/dev/null
 ```
 
 Create a **Google Custom Search Engine** in https://programmablesearchengine.google.com/, configure the **domain(s)** where you want to search the Dorks in that engine, and **get the ID** and use it in the `--cseid` param.
