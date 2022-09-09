@@ -199,7 +199,7 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
     print(f"Category: {Fore.GREEN}{gdork_list_name.upper()}{Style.RESET_ALL}!")
     print("")
 
-    json_results = []
+    json_results = {}
 
     for i in progressbar.progressbar(range(len(gdork_list))):
         item = gdork_list[i]
@@ -226,12 +226,12 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
             continue
         
         # If here, something was found
-        json_results.append({
+        json_results[dork] = {
             "name": dork,
             "category": gdork_list_name,
             "description": description,
             "results": [res["link"] for res in results]
-        })
+        }
         
         progressbar.streams.flush()
         print("")
@@ -259,7 +259,7 @@ def main():
     parser.add_argument('--dorks', help='Path to JSON dorks', required=True)
     parser.add_argument('--debug', help='Debug', default=False, action='store_true')
     parser.add_argument('--siterestrict', help='Use siterestrict api (the engine has less than 10 domains)', default=False, action='store_true')
-    parser.add_argument('--json-file', help='Store json results in the indicated file', default=False, action='store_true')
+    parser.add_argument('--json-file', help='Store json results in the indicated file',)
 
     args = parser.parse_args()
     cseid = args.cseid
