@@ -1,3 +1,4 @@
+argparse
+colorama
 progressbar
 requests
-colorama
