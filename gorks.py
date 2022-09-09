@@ -268,7 +268,7 @@ def main():
     dorks_path = args.dorks
     debug = args.debug
     siterestrict = args.siterestrict
-    out_json_file_file = args.json_file
+    out_json_file = args.json_file
 
     if not apikey_file and not api_key:
         print("You need to specify a --api.key or --api-keys-file")
