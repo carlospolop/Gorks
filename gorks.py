@@ -249,7 +249,7 @@ def check_dorks(gdork_list_name: str, gdork_list: List[Dict], gcse_id: str, api_
 
     if out_json_file:
         with open(out_json_file, "w") as f:
-            json.dump(json_results)
+            json.dump(json_results, f)
 
 def main():
     parser = argparse.ArgumentParser(description='Search google dorks in the specified GCSE id')
