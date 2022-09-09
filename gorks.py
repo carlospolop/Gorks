@@ -259,7 +259,7 @@ def main():
     parser.add_argument('--dorks', help='Path to JSON dorks', required=True)
     parser.add_argument('--debug', help='Debug', default=False, action='store_true')
     parser.add_argument('--siterestrict', help='Use siterestrict api (the engine has less than 10 domains)', default=False, action='store_true')
-    parser.add_argument('--json-file', help='Store json results in the indicated file',)
+    parser.add_argument('--json-file', help='Store json results in the indicated file')
 
     args = parser.parse_args()
     cseid = args.cseid
