@@ -16,4 +16,4 @@ Create a **API key for the Custom Search** service in https://console.cloud.goog
 
 You can **download an updated `ghdb.json`** from https://github.com/carlospolop/Auto_Wordlists/blob/main/wordlists/ghdb.json
 
-If you like **Gorks** you will probably like also **[Pastos](https://github.com/carlospolop/Pastos)**
+If you like **Gorks** you will probably like also **[Pastos](https://github.com/carlospolop/Pastos)** and **[Leakos](https://github.com/carlospolop/Leakos)**
