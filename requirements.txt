@@ -1,4 +1,4 @@
 argparse
 colorama
-progressbar
+progressbar2
 requests
