@@ -297,6 +297,10 @@ def main():
         print("No api keys in file")
         exit(0)
     
+    if len(cseid) < 10:
+        print("Looks like an invalid cseid")
+        exit(0)
+    
     # Search each dork
     for dork_list_name, dork_list in dorks_json.items():
         if api_keys:
